@@ -18,7 +18,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/ap
 RUN apt-get update
 
 # Install necessary tools
-RUN apt-get install -y git wget dialog net-tools
+RUN apt-get install -y git wget dialog net-tools node npm
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
@@ -38,7 +38,6 @@ RUN       tar xzf bitcoin-0.9.1-linux.tar.gz
 RUN       cp /bitcoin-0.9.1-linux/bin/64/* /usr/bin/
 
 # install node
-RUN        wget http://nodejs.org/dist/v0.10.26/node-v0.10.26-linux-x64.tar.gz
 RUN        tar xzf node-v0.10.26-linux-x64.tar.gz
 RUN        ln -s /node-v0.10.26-linux-x64/bin/node /usr/sbin/node
 RUN        ln -s /node-v0.10.26-linux-x64/bin/npm /usr/sbin/npm
@@ -63,4 +62,3 @@ EXPOSE 8333
 # Set the default command to execute
 # when creating a new container
 #CMD service nginx start
-CMD []

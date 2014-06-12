@@ -23,4 +23,4 @@ now you have bootstrap.dat, verify sha1sum
  mv bootstrap.dat .bitcoin/
  
  sudo docker build -t insight .
- docker run -p 80:80 -i -v ~/.bitcoin:/data/bitcoin insight
+ docker run -p 80:80 -i -t -v ~/.bitcoin:/data/bitcoin insight /bin/bash
