@@ -64,3 +64,4 @@ EXPOSE 8333
 # when creating a new container
 #CMD service nginx start
 ENTRYPOINT [ "/bin/bash" ]
+CMD []
