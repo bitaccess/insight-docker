@@ -44,7 +44,8 @@ RUN        cd /opt && git clone https://github.com/bitpay/insight.git
 RUN        cd /opt/insight/ && npm install
 RUN        npm install -g forever
 RUN        mkdir -p /data/bitcoin
-RUN        cp /opt/insight/node_modules/insight-bitcore-api/etc/bitcoind/bitcoin-livenet.conf /data/bitcoin/bitcoin.conf
+ADD        bitcoin.conf bitcoin.conf
+RUN        cp bitcoin.conf /data/bitcoin/bitcoin.conf
 
 ADD        start.sh start.sh
 
