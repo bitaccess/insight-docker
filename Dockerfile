@@ -16,7 +16,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/ap
 
 # Update the repository
 RUN apt-get update
-RUN apt-get upgrade
+RUN apt-get -y upgrade
 
 # Install necessary tools
 RUN apt-get install -y git wget dialog net-tools 
