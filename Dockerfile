@@ -14,11 +14,15 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 # Add application repository URL to the default sources
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
+# install node
+sudo add-apt-repository -y ppa:chris-lea/node.js
+
 # Update the repository
 RUN apt-get update
 
 # Install necessary tools
-RUN apt-get install -y git wget dialog net-tools node npm
+RUN apt-get install -y git wget dialog net-tools 
+sudo apt-get install -y python-software-properties python g++ make nodejs
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
@@ -36,6 +40,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN       wget https://bitcoin.org/bin/0.9.1/bitcoin-0.9.1-linux.tar.gz
 RUN       tar xzf bitcoin-0.9.1-linux.tar.gz
 RUN       cp /bitcoin-0.9.1-linux/bin/64/* /usr/bin/
+
 
 
 # install insight
