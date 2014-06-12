@@ -14,14 +14,16 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 # Add application repository URL to the default sources
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
-# install node
-RUN add-apt-repository -y ppa:chris-lea/node.js
-
 # Update the repository
 RUN apt-get update
+RUN apt-get upgrade
 
 # Install necessary tools
 RUN apt-get install -y git wget dialog net-tools 
+
+# install node
+RUN apt-add-repository -y ppa:chris-lea/node.js > /dev/null
+RUN apt-get -qq update > /dev/null
 RUN apt-get install -y python-software-properties python g++ make nodejs
 
 # Download and Install Nginx
