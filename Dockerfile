@@ -18,7 +18,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/ap
 RUN apt-get update
 
 # Install necessary tools
-RUN apt-get install -y git vi wget dialog net-tools
+RUN apt-get install -y git wget dialog net-tools
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
