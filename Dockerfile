@@ -37,10 +37,6 @@ RUN       wget https://bitcoin.org/bin/0.9.1/bitcoin-0.9.1-linux.tar.gz
 RUN       tar xzf bitcoin-0.9.1-linux.tar.gz
 RUN       cp /bitcoin-0.9.1-linux/bin/64/* /usr/bin/
 
-# install node
-RUN        tar xzf node-v0.10.26-linux-x64.tar.gz
-RUN        ln -s /node-v0.10.26-linux-x64/bin/node /usr/sbin/node
-RUN        ln -s /node-v0.10.26-linux-x64/bin/npm /usr/sbin/npm
 
 # install insight
 RUN        cd /opt && git clone https://github.com/bitpay/insight.git
