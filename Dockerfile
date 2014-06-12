@@ -15,14 +15,14 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
 # install node
-sudo add-apt-repository -y ppa:chris-lea/node.js
+RUN add-apt-repository -y ppa:chris-lea/node.js
 
 # Update the repository
 RUN apt-get update
 
 # Install necessary tools
 RUN apt-get install -y git wget dialog net-tools 
-sudo apt-get install -y python-software-properties python g++ make nodejs
+RUN apt-get install -y python-software-properties python g++ make nodejs
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
