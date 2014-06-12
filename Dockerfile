@@ -45,9 +45,9 @@ RUN        ln -s /node-v0.10.26-linux-x64/bin/npm /usr/sbin/npm
 
 # install insight
 RUN        cd /opt && git clone https://github.com/bitpay/insight.git
-RUN        cd /opt/insight/ && npm install
-RUN        mkdir -p /data/bitcoin
-RUN        cp /opt/insight/node_modules/insight-bitcore-api/etc/bitcoind/bitcoin-livenet.conf /data/bitcoin/bitcoin.conf
+#RUN        cd /opt/insight/ && npm install
+#RUN        mkdir -p /data/bitcoin
+#RUN        cp /opt/insight/node_modules/insight-bitcore-api/etc/bitcoind/bitcoin-livenet.conf /data/bitcoin/bitcoin.conf
 
 ADD        start.sh start.sh
 
