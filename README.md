@@ -21,6 +21,11 @@ now you have bootstrap.dat, verify sha1sum
  cd ~
  mkdir .bitcoin
  mv bootstrap.dat .bitcoin/
+ cp bitcoin.conf .bintcoin/
+ mkdir .insight/
  
  sudo docker build -t insight .
- docker run -p 80:80 -i -t -v ~/.bitcoin:/data/bitcoin insight /bin/bash
+ docker run -p 80:80 -i -t -v ~/.bitcoin:/data/bitcoin insight -v ~/.insight:/data/insight /bin/bash
+ 
+
+  INSIGHT_NETWORK=livenet BITCOIND_USER=user BITCOIND_PASS=pass INSIGHT_PUBLIC_PATH=public  INSIGHT_DB=/data/insight npm start

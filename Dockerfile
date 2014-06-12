@@ -44,8 +44,6 @@ RUN        cd /opt && git clone https://github.com/bitpay/insight.git
 RUN        cd /opt/insight/ && npm install
 RUN        npm install -g forever
 RUN        mkdir -p /data/bitcoin
-ADD        bitcoin.conf bitcoin.conf
-RUN        cp bitcoin.conf /data/bitcoin/bitcoin.conf
 
 ADD        start.sh start.sh
 
