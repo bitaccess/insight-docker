@@ -15,8 +15,8 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
 
 # Update the repository
-RUN apt-get update
-RUN apt-get -y upgrade
+RUN apt-get -qq update > /dev/null
+RUN apt-get -yqq upgrade > /dev/null
 
 # Install necessary tools
 RUN apt-get install -y git wget dialog net-tools 
