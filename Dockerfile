@@ -13,12 +13,12 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 RUN apt-get -qq update > /dev/null
 
 # Install necessary tools
-RUN apt-get install -y git wget dialog net-tools 
+RUN apt-get install -y git wget dialog net-tools python-software-properties python g++
 
 # install node
 RUN apt-add-repository -y ppa:chris-lea/node.js > /dev/null
 RUN apt-get -qq update > /dev/null
-RUN apt-get install -y python-software-properties python g++ make nodejs
+RUN apt-get install -y make nodejs
 
 # Download and Install Nginx
 RUN apt-get install -y nginx
