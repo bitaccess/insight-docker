@@ -4,7 +4,7 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntu
+FROM ubuntu:precise
 
 # File Author / Maintainer
 MAINTAINER Moe Adham <moe@bitaccess.ca>
