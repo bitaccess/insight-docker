@@ -9,14 +9,8 @@ FROM ubuntu:precise
 # File Author / Maintainer
 MAINTAINER Moe Adham <moe@bitaccess.ca>
 
-# Install Nginx
-
-# Add application repository URL to the default sources
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ raring main universe" >> /etc/apt/sources.list
-
 # Update the repository
 RUN apt-get -qq update > /dev/null
-RUN apt-get -yqq upgrade > /dev/null
 
 # Install necessary tools
 RUN apt-get install -y git wget dialog net-tools 
