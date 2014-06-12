@@ -13,7 +13,7 @@ MAINTAINER Moe Adham <moe@bitaccess.ca>
 RUN apt-get -qq update > /dev/null
 
 # Install necessary tools
-RUN apt-get install -y git wget dialog net-tools python-software-properties python g++
+RUN apt-get install -y vim git wget dialog net-tools python-software-properties python g++
 
 # install node
 RUN apt-add-repository -y ppa:chris-lea/node.js > /dev/null
@@ -28,9 +28,6 @@ RUN rm -v /etc/nginx/nginx.conf
 
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
-
-# Append "daemon off;" to the beginning of the configuration
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 
 # install bitcoind
 RUN       wget https://bitcoin.org/bin/0.9.1/bitcoin-0.9.1-linux.tar.gz
