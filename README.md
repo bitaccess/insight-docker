@@ -56,4 +56,5 @@ Inside the docker shell, start bitcoind for the first time, let it sync the bloc
 ### Example:
 
 https://search.bitaccess.ca/
+(Self signed cert for test...)
     
