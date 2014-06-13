@@ -32,4 +32,9 @@ now you have bootstrap.dat, verify sha1sum
  # Let your blockchain index a bit.
   
   
- INSIGHT_NETWORK=livenet BITCOIND_USER=user BITCOIND_PASS=pass INSIGHT_PUBLIC_PATH=public  INSIGHT_DB=/data/insight npm start
+ #INSIGHT_NETWORK=livenet BITCOIND_USER=user BITCOIND_PASS=pass INSIGHT_PUBLIC_PATH=public  INSIGHT_DB=/data/insight npm start
+ 
+ # Install supervisor
+ sudo apt-get install supervisor
+ # copy supervisor file
+ sudo cp insight-supervisor.conf /etc/supervisor/conf.d/
