@@ -1,5 +1,4 @@
 # *insight-docker*
-==============
 
 An Attempt at an bitcore insight node running behind nginx inside docker. Nginx hosts & forces ssl. No load-balancing (yet).
 
@@ -16,8 +15,9 @@ lockdown your server (fail2ban, ssh, etc)
     ufw allow 8333
     ufw enable
     
-
-install rtorrent
+    
+### Bootstrap the blockchain
+install rtorrent, get the blockchain bootstrap.
 
     apt-get install rtorrent
     rtorret
@@ -34,7 +34,7 @@ This bootstrap will get you in sync with the blockchain a lot faster. Still not 
     cp bitcoin.conf .bintcoin/
     mkdir .insight/
  
-Build your dockerfile
+### Build your dockerfile
 
     sudo docker build -t insight .
     sudo docker run -p 80:80 -p 443:443 -p 8333:8333 -i -t -v ~/.bitcoin:/data/bitcoin -v ~/.insight:/data/insight -v ~/ssl:/data/ssl insight /bin/bash
@@ -46,7 +46,7 @@ Inside the docker shell, start bitcoind for the first time, let it sync the bloc
 
 
  
- ### Install supervisor
+### Install supervisor
  
     sudo apt-get install supervisor
     #copy supervisor file
