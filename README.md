@@ -26,6 +26,7 @@ install rtorrent
     sha1sum bootstrap.dat
 
 now you have bootstrap.dat, verify sha1sum
+
     cd ~
     mkdir .bitcoin
     mv bootstrap.dat .bitcoin/
@@ -38,12 +39,14 @@ Build your dockerfile
     sudo docker run -p 80:80 -p 443:443 -p 8333:8333 -i -t -v ~/.bitcoin:/data/bitcoin -v ~/.insight:/data/insight -v ~/ssl:/data/ssl insight /bin/bash
  
 Inside the docker shell, start bitcoind for the first time, let it sync the blockchain for a bit. Otherwise, when you actually start insight it will die in annoying ways
+
     bitcoind -datadir='/data/bitcoin' -reindex -rpcallowip='127.0.0.1' &
     bitcoind -datadir='/data/bitcoin' getinfo
 
 
  
  ### Install supervisor
+ 
     sudo apt-get install supervisor
     #copy supervisor file
     sudo cp insight-supervisor.conf /etc/supervisor/conf.d/
