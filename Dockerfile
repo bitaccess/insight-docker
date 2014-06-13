@@ -52,4 +52,4 @@ EXPOSE 8333
 
 # Set the default command to execute
 # when creating a new container
-CMD start.sh
+CMD /start.sh
