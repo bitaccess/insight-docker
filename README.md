@@ -25,7 +25,8 @@ install rtorrent
     magnet:?xt=urn:btih:cb7caf0b4c0ee266cce5fbd8f8ba3903f5efa82e&dn=bootstrap.dat&tr=udp://tracker.openbittorrent.com:80&tr=udp://tracker.publicbt.com:80&tr=udp://tracker.ccc.de:80&tr=udp://tracker.istole.it:80
     sha1sum bootstrap.dat
 
-now you have bootstrap.dat, verify sha1sum
+Verify the sha1sum : 78a4b41ba7ed823c78cd9ca81a6de393c0ccc226
+This bootstrap will get you in sync with the blockchain a lot faster. Still not torrent for the Insight Leveldb (yet)
 
     cd ~
     mkdir .bitcoin
