@@ -26,7 +26,8 @@ install rtorrent, get the blockchain bootstrap.
     sha1sum bootstrap.dat
 
 Verify the sha1sum : 78a4b41ba7ed823c78cd9ca81a6de393c0ccc226
-This bootstrap will get you in sync with the blockchain a lot faster. Still not torrent for the Insight Leveldb (yet)
+
+This bootstrap file will get you in sync with the blockchain a lot faster. Still no torrent for the Insight Leveldb (yet). This will take hours to sync.
 
     cd ~
     mkdir .bitcoin
