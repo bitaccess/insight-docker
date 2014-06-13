@@ -28,7 +28,7 @@ RUN rm -v /etc/nginx/nginx.conf
 
 # Copy a configuration file from the current directory
 ADD nginx.conf /etc/nginx/
-ADD ssl/cert.pem /data/ssl/
+ADD ssl/cert.crt /data/ssl/
 ADD ssl/cert.key /data/ssl/
 
 
