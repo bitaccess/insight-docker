@@ -25,7 +25,7 @@ now you have bootstrap.dat, verify sha1sum
  mkdir .insight/
  
  sudo docker build -t insight .
- sudo docker run -p 80:80 -p 443:443 -p 8333:8333 -i -t -v ~/.bitcoin:/data/bitcoin -v ~/.insight:/data/insight insight /bin/bash
+ sudo docker run -p 80:80 -p 443:443 -p 8333:8333 -i -t -v ~/.bitcoin:/data/bitcoin -v ~/.insight:/data/insight -v ~/ssl:/data/ssl insight /bin/bash
  
  bitcoind -datadir='/data/bitcoin' -reindex -rpcallowip='127.0.0.1' &
  bitcoind -datadir='/data/bitcoin' getinfo
