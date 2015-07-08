@@ -1,55 +1,58 @@
 ############################################################
 # Dockerfile to run bitcoind, and insight behind nginx
-# Based on Ubuntu
+# Based on phusion/baseimage (Ubuntu)
 ############################################################
 
 # Set the base image to Ubuntu
-FROM ubuntu:precise
+FROM phusion/baseimage:0.9.16
 
 # File Author / Maintainer
-MAINTAINER Moe Adham <moe@bitaccess.ca>
+MAINTAINER Allan Hudgins <allan@bitaccess.co>
 
 # Update the repository
 RUN apt-get -qq update > /dev/null
 
 # Install necessary tools
-RUN apt-get install -y git wget dialog net-tools python-software-properties python g++
+RUN apt-get install -y \
+  dialog \
+  g++ \
+  git \
+  make \
+  net-tools \
+  nginx \
+  python \
+  python-software-properties \
+  wget
 
 # install node
 RUN apt-add-repository -y ppa:chris-lea/node.js > /dev/null
 RUN apt-get -qq update > /dev/null
-RUN apt-get install -y make nodejs
+RUN apt-get install -y nodejs
 
-# Download and Install Nginx
-RUN apt-get install -y nginx
-
-# Remove the default Nginx configuration file
-RUN rm -v /etc/nginx/nginx.conf
-
-# Copy a configuration file from the current directory
-ADD nginx.conf /etc/nginx/
-
-
-# install bitcoind
-RUN       wget https://bitcoin.org/bin/0.9.1/bitcoin-0.9.1-linux.tar.gz
-RUN       tar xzf bitcoin-0.9.1-linux.tar.gz
-RUN       cp /bitcoin-0.9.1-linux/bin/64/* /usr/bin/
-
-
+# install bitcoind and clean up, keeping image size down
+RUN wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.10.2A/bitcoin-0.10.2-linux64.tar.gz && \
+  tar xzf bitcoin-0.10.2-linux64.tar.gz && \
+  cp /bitcoin-0.10.2/bin/* /usr/bin && \
+  rm bitcoin-0.10.2-linux64.tar.gz && \
+  mkdir -p /data/bitcoin
 
 # install insight
-RUN        cd /opt && git clone https://github.com/bitaccess/insight.git
-RUN        cd /opt/insight/ && npm install
-RUN        npm install -g forever
-RUN        mkdir -p /data/bitcoin
-
-ADD        start.sh start.sh
+RUN npm install -g forever
+RUN echo 1
+RUN cd /opt && git clone -b june2015_merge https://github.com/bitaccess/insight.git
+RUN cd /opt/insight/ && npm install --production
 
 # Expose ports
 EXPOSE 80
 EXPOSE 443
 EXPOSE 8333
 
-# Set the default command to execute
-# when creating a new container
+# Copy nginx configuration file from the current directory
+RUN rm /etc/nginx/nginx.conf
+ADD nginx.conf /etc/nginx/nginx.conf
+
+ADD bitcoin.conf /data/bitcoin/bitcoin.conf
+ADD sync.sh sync.sh
+ADD start.sh start.sh
+
 CMD /start.sh
