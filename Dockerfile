@@ -38,8 +38,8 @@ RUN wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.10.2A/bitco
 
 # install insight
 RUN npm install -g forever
-RUN echo 1
-RUN cd /opt && git clone -b june2015_merge https://github.com/bitaccess/insight.git
+RUN echo 2
+RUN cd /opt && git clone -b master https://github.com/bitaccess/insight.git
 RUN cd /opt/insight/ && npm install --production
 
 # Expose ports
