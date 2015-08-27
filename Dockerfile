@@ -22,23 +22,21 @@ RUN apt-get install -y \
   nginx \
   python \
   python-software-properties \
-  wget
+  curl \
+  wget > /dev/null
 
 # install node
-RUN apt-add-repository -y ppa:chris-lea/node.js > /dev/null
-RUN apt-get -qq update > /dev/null
+RUN curl -sL https://deb.nodesource.com/setup_0.10 | bash -
 RUN apt-get install -y nodejs
 
+ADD bitcoin-0.11.0-linux64.tar.gz /data/
 # install bitcoind and clean up, keeping image size down
-RUN wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.10.2A/bitcoin-0.10.2-linux64.tar.gz && \
-  tar xzf bitcoin-0.10.2-linux64.tar.gz && \
-  cp /bitcoin-0.10.2/bin/* /usr/bin && \
-  rm bitcoin-0.10.2-linux64.tar.gz && \
+RUN cp /data/bitcoin-0.11.0/bin/* /usr/bin && \
   mkdir -p /data/bitcoin
 
 # install insight
 RUN npm install -g forever
-RUN echo 2
+RUN echo 3
 RUN cd /opt && git clone -b master https://github.com/bitaccess/insight.git
 RUN cd /opt/insight/ && npm install --production
 
