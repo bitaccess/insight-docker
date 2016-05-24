@@ -1,56 +1,28 @@
-############################################################
-# Dockerfile to run bitcoind, and insight behind nginx
-# Based on phusion/baseimage (Ubuntu)
-############################################################
+# Warning: node:argon is based off of an odd base image.
+FROM node:argon
+MAINTAINER Moe Adham <moe@bitaccess.co>
 
-# Set the base image to Ubuntu
-FROM phusion/baseimage:0.9.16
+# Install base dependencies
+RUN apt-get update && apt-get install -y -q --no-install-recommends \
+        apt-transport-https \
+        build-essential \
+        ca-certificates \
+        curl \
+        git \
+        libssl-dev \
+        python \
+        rsync \
+        software-properties-common \
+        git-core \
+        wget \
+    && rm -rf /var/lib/apt/lists/*
 
-# File Author / Maintainer
-MAINTAINER Allan Hudgins <allan@bitaccess.co>
-
-# Update the repository
-RUN apt-get -qq update > /dev/null
-
-# Install necessary tools
-RUN apt-get install -y \
-  dialog \
-  g++ \
-  git \
-  make \
-  net-tools \
-  nginx \
-  python \
-  python-software-properties \
-  curl \
-  wget > /dev/null
-
-# install node
-RUN curl -sL https://deb.nodesource.com/setup_0.10 | bash -
-RUN apt-get install -y nodejs
-
-ADD bitcoin-0.11.0-linux64.tar.gz /data/
-# install bitcoind and clean up, keeping image size down
-RUN cp /data/bitcoin-0.11.0/bin/* /usr/bin && \
-  mkdir -p /data/bitcoin
-
-# install insight
-RUN npm install -g forever
-RUN echo 3
-RUN cd /opt && git clone -b master https://github.com/bitaccess/insight.git
-RUN cd /opt/insight/ && npm install --production
-
-# Expose ports
-EXPOSE 80
-EXPOSE 443
-EXPOSE 8333
-
-# Copy nginx configuration file from the current directory
-RUN rm /etc/nginx/nginx.conf
-ADD nginx.conf /etc/nginx/nginx.conf
-
-ADD bitcoin.conf /data/bitcoin/bitcoin.conf
-ADD sync.sh sync.sh
-ADD start.sh start.sh
-
-CMD /start.sh
+# Install Bitcore
+RUN npm install -g bitcore
+ADD bitcore-node.json /root/.bitcore/
+RUN git clone https://github.com/bitaccess/insight-api.git && cd insight-api && git checkout 294500f49315ee968fb0dfd0d79bce170ee902ee
+RUN cp -rf insight-api/lib/* /usr/local/lib/node_modules/bitcore/node_modules/insight-api/lib/
+RUN git clone https://github.com/bitaccess/insight.git && cd insight && git checkout 58a2cf4629dae805da4d017bfe31f4b1f388d6f7
+RUN cp -rf insight/* /usr/local/lib/node_modules/bitcore/node_modules/insight-ui/
+EXPOSE 3000 18333
+ENTRYPOINT "bitcored"

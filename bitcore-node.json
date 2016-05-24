@@ -1,0 +1,13 @@
+{
+  "datadir": "/bitcoin",
+  "network": "livenet",
+  "port": 3001,
+  "services": [
+    "bitcoind",
+    "db",
+    "address",
+    "web",
+    "insight-api",
+    "insight-ui"
+  ]
+}
