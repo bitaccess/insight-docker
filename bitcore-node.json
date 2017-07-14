@@ -4,10 +4,16 @@
   "port": 3001,
   "services": [
     "bitcoind",
-    "db",
-    "address",
     "web",
     "insight-api",
     "insight-ui"
-  ]
+  ],
+  "servicesConfig": {
+    "bitcoind": {
+      "spawn": {
+        "datadir": "/bitcoin",
+        "exec": "/usr/local/lib/node_modules/bitcore/node_modules/bitcore-node/bin/bitcoind"
+      }
+    }
+  }
 }
