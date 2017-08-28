@@ -1,13 +1,23 @@
 {
-  "datadir": "/bitcoin",
-  "network": "livenet",
+  "network": "mainnet",
   "port": 3001,
   "services": [
     "bitcoind",
-    "db",
-    "address",
     "web",
     "insight-api",
     "insight-ui"
-  ]
+  ],
+  "servicesConfig": {
+    "insightConfig": {
+      "apiPrefix": "insight-api",
+      "routePrefix": ""
+    },
+    "bitcoind": {
+      "spawn": {
+        "datadir": "/bitcoin",
+        "network": "mainnet",
+        "exec": "/usr/lib/node_modules/bitcore/node_modules/bitcore-node/bin/bitcoind"
+      }
+    }
+ }
 }
