@@ -36,7 +36,7 @@ RUN cp insight-api/lib/transactions.js /usr/lib/node_modules/bitcore/node_module
 
 # Patch insight ui
 RUN rm -rf /usr/lib/node_modules/bitcore/node_modules/insight-ui
-RUN git clone https://github.com/bitaccess/insight.git && cd insight && git checkout e49dc0780dc9caa4ad10b8cf22ead51b3a2930b2
+RUN git clone https://github.com/bitaccess/insight.git && cd insight && git checkout e51b172b6ba590d89cfa52964ec413b8fcbd9a12 
 RUN mv insight /usr/lib/node_modules/bitcore/node_modules/insight-ui
 
 EXPOSE 3001 8333
